@@ -308,7 +308,10 @@ class PrettyPrinter:
 
     def format_pos(self, annot):
         apos = annot.getstartpos()
-        o = self.nearest_outline(apos) if apos else None
+        try:
+            o = self.nearest_outline(apos) if apos else None
+        except:
+            o = None
         if o:
             return "Page %d (%s)" % (annot.page.pageno + 1, o.title)
         else:
